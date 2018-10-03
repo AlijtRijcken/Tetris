@@ -1,6 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-/// A class for representing the Tetris playing grid.
+
+//MODEL, WORLD 
+// houdt bij wat bv het volgende blokje is, de scores
+// het blokje bestaat alleen in het model
+
 class TetrisGrid
 {
     /// The sprite of a single empty cell in the grid.

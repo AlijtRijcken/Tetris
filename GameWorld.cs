@@ -5,6 +5,8 @@ using System;
 
 /// A class for representing the game world.
 /// This contains the grid, the falling block, and everything else that the player can see/do.
+/// 
+//CONTROLER, 
 class GameWorld
 {
     /// An enum for the different game states that the game can have.
@@ -44,6 +46,7 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
+        //Als een key ingedrukt, detecteer en dan doorsturen, aanroepen.
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
