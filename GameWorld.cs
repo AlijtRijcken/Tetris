@@ -2,40 +2,30 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-/// <summary>
+
 /// A class for representing the game world.
 /// This contains the grid, the falling block, and everything else that the player can see/do.
-/// </summary>
 class GameWorld
 {
-    /// <summary>
     /// An enum for the different game states that the game can have.
-    /// </summary>
     enum GameState
     {
         Playing,
         GameOver
     }
-
-    /// <summary>
+ 
     /// The random-number generator of the game.
-    /// </summary>
+
     public static Random Random { get { return random; } }
     static Random random;
 
-    /// <summary>
     /// The main font of the game.
-    /// </summary>
     SpriteFont font;
 
-    /// <summary>
     /// The current game state.
-    /// </summary>
     GameState gameState;
 
-    /// <summary>
     /// The main grid of the game.
-    /// </summary>
     TetrisGrid grid;
 
     public GameWorld()
@@ -60,7 +50,7 @@ class GameWorld
     {
         spriteBatch.Begin();
         grid.Draw(gameTime, spriteBatch);
-        spriteBatch.DrawString(font, "Hello!", Vector2.Zero, Color.Blue);
+        //spriteBatch.DrawString(font, "Hello!", Vector2.Zero, Color.Blue);
         spriteBatch.End();
     }
 
