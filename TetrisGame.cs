@@ -9,9 +9,7 @@ class TetrisGame : Game
     InputHelper inputHelper;
     GameWorld gameWorld;
 
-    /// <summary>
     /// A static reference to the ContentManager object, used for loading assets.
-    /// </summary>
     public static ContentManager ContentManager { get; private set; }
     
 

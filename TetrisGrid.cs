@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 
 //MODEL, WORLD 
-// houdt bij wat bv het volgende blokje is, de scores
+// houdt bij wat bv het volgende blokje is, de scores bijhouden -> property score uit de GameWorld. 
 // het blokje bestaat alleen in het model
 
 class TetrisGrid
