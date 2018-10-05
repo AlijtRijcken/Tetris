@@ -29,6 +29,7 @@ class GameWorld
 
     /// The main grid of the game.
     TetrisGrid grid;
+    TetrisBlock block;
 
     public int score; 
 
@@ -42,6 +43,7 @@ class GameWorld
         font = TetrisGame.ContentManager.Load<SpriteFont>("SpelFont");
 
         grid = new TetrisGrid();
+        block = new BlockI();
 
         score = 0; 
     }
@@ -52,13 +54,15 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
-        //Als een key ingedrukt, detecteer en dan doorsturen, aanroepen.
+
+        //Als een key ingedrukt, detecteer en dan doorsturen, aanroepen.  -> Tetrisblock en die controleerd weer verder. 
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         spriteBatch.Begin();
         grid.Draw(gameTime, spriteBatch);
+        block.Draw(gameTime, spriteBatch);
         spriteBatch.DrawString(font, "Score:" + score, new Vector2(320,5), Color.Blue);
         spriteBatch.End();
     }

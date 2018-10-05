@@ -45,7 +45,7 @@
     <Compile Include="Notes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen.cs" />
-    <Compile Include="TetrisBlok.cs" />
+    <Compile Include="TetrisBlock.cs" />
     <Compile Include="TetrisGame.cs" />
     <Compile Include="TetrisGrid.cs" />
   </ItemGroup>

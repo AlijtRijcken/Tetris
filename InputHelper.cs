@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-
+using System; 
 /// A class for helping out with input-related tasks, such as checking if a key or mouse button has been pressed.
 class InputHelper
 {
@@ -19,8 +19,8 @@ class InputHelper
         currentMouseState = Mouse.GetState();
         currentKeyboardState = Keyboard.GetState();
 
-        //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-           // Exit();
+       // if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+           //Exit();
     }
 
     /// Gets the current position of the mouse cursor.
