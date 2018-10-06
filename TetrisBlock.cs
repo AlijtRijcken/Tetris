@@ -15,10 +15,26 @@ public class TetrisBlock
 
     public TetrisBlock()
     {
+        //Default Tetris block. 
         block = new int[4, 4] { { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
         setBlock = false;
         position = new Vector2(0, 0);
-        setColor = Color.Black;
+    }
+
+    //rotation current tetrisblock. 
+    public void RotatingBlock()
+    {
+        int[,] tempBlock = new int[4, 4];
+
+        for (int x = 0; x < block.GetLength(0); x++)
+        {
+            for (int y = 0; y < block.GetLength(0); y++)
+            {
+
+            }
+
+        }
+
     }
 
     public void Update(GameTime gameTime)
@@ -38,7 +54,6 @@ public class TetrisBlock
             }
 
         }
-
 
     }
 

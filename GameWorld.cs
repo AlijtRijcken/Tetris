@@ -29,7 +29,7 @@ class GameWorld
 
     /// The main grid of the game.
     TetrisGrid grid;
-    TetrisBlock block;
+    BlockZ block;           ///
 
     public int score; 
 
@@ -43,7 +43,7 @@ class GameWorld
         font = TetrisGame.ContentManager.Load<SpriteFont>("SpelFont");
 
         grid = new TetrisGrid();
-        block = new BlockI();
+        block = new BlockZ();     ///////
 
         score = 0; 
     }

@@ -17,9 +17,21 @@ namespace Tetris
         Stil staande blokjes sla je op in de grid, dus waard verandert van 0 naar iets anders ( een kleur)
         
         bewegende blokjes: positie bijhouden, 
-         
-         
-         
+
+
+       
+        RemovingRow()
+        {
+            for (int y = 20; y >= 0; y--)
+            {
+                for (int x = 0; x < 10; x++)
+                {
+                    grid[x,y+1] = grid[x,y]
+                }
+
+            }
+        }
          */
+
     }
 }
