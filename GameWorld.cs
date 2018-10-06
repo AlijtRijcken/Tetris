@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 
 
@@ -29,7 +30,7 @@ class GameWorld
 
     /// The main grid of the game.
     TetrisGrid grid;
-    BlockZ block;           ///
+    BlockI block;           ///
 
     public int score; 
 
@@ -43,13 +44,16 @@ class GameWorld
         font = TetrisGame.ContentManager.Load<SpriteFont>("SpelFont");
 
         grid = new TetrisGrid();
-        block = new BlockZ();     ///////
+        block = new BlockI();     ///////
 
         score = 0; 
     }
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
     {
+
+
+
     }
 
     public void Update(GameTime gameTime)

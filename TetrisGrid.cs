@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 
 //MODEL, WORLD 
@@ -23,7 +24,8 @@ class TetrisGrid
     static public int[,] Grid = new int[gridWidth, gridHeight];
 
     Random random;
-    private int number; 
+    private int number;
+    TetrisBlock block; 
  
 // Creates a new TetrisGrid.
 public TetrisGrid()
@@ -31,7 +33,7 @@ public TetrisGrid()
         emptyCell = TetrisGame.ContentManager.Load<Texture2D>("block");
         position = Vector2.Zero;
 
-        number = random.Next(0, 7);
+        //number = random.Next(0, 7);
 
         Clear();
     }
@@ -108,6 +110,7 @@ public TetrisGrid()
         }
     }
     */
+
     // Clears the grid.
     public void Clear()
     {

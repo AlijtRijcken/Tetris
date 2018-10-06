@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ public class TetrisBlock
     }
 
     //rotation current tetrisblock. 
+    //rotation matrix -> when two matrixes available a and b, with a given. b(x,y) = a(y, x)
     public void RotatingBlock()
     {
         int[,] tempBlock = new int[4, 4];
@@ -30,11 +32,19 @@ public class TetrisBlock
         {
             for (int y = 0; y < block.GetLength(0); y++)
             {
-
+                tempBlock[x, y] = block[y, x];
             }
-
         }
 
+        //for (int y = 0; y < block.GetLength(0); y++)
+        //{
+        //    for (int x = 0; x < block.GetLength(0); x++)
+        //    {
+        //        if (tempBlock[x, y] != 0) ;
+                    
+        //    }
+
+        //}
     }
 
     public void Update(GameTime gameTime)
