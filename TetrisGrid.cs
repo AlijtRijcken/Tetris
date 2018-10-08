@@ -16,12 +16,12 @@ class TetrisGrid
     Vector2 position;
 
     // The number of grid elements in the x-direction.
-    static public int gridWidth { get { return 10; } }
+    static public int GridWidth { get { return 10; } }
 
     // The number of grid elements in the y-direction.
-    static public int gridHeight { get { return 20; } }
+    static public int GridHeight { get { return 20; } }
 
-    static public int[,] Grid = new int[gridWidth, gridHeight];
+    static public int[,] Grid = new int[GridWidth, GridHeight];
 
     Random random;
     private int number;
@@ -41,9 +41,9 @@ public TetrisGrid()
     //Draws the grid on the screen.
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        for (int x = 0; x < gridWidth; x++)
+        for (int x = 0; x < GridWidth; x++)
         {
-            for (int y = 0; y < gridHeight; y++)
+            for (int y = 0; y < GridHeight; y++)
             {
                 if (Grid[x, y] == 0)
                 {
@@ -114,9 +114,9 @@ public TetrisGrid()
     // Clears the grid.
     public void Clear()
     {
-        for (int x = 0; x < gridWidth; x++)
+        for (int x = 0; x < GridWidth; x++)
         {
-            for (int y = 0; y < gridHeight; y++)
+            for (int y = 0; y < GridHeight; y++)
             {
                 Grid[x, y] = 0; 
             }

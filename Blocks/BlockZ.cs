@@ -9,11 +9,11 @@ public class BlockZ : TetrisBlock
 {
     public BlockZ()
     {
-        block[0, 0] = 7;
-        block[1, 0] = 7;
         block[1, 1] = 7;
         block[2, 1] = 7;
+        block[2, 2] = 7;
+        block[3, 2] = 7;
 
-        setColor = Color.BlanchedAlmond; 
+        setColor = Color.Orange; 
     }
 }

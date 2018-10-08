@@ -8,7 +8,7 @@ class TetrisGame : Game
     SpriteBatch spriteBatch;
     InputHelper inputHelper;
     GameWorld gameWorld;
-
+    TetrisBlock block;
     /// A static reference to the ContentManager object, used for loading assets.
     public static ContentManager ContentManager { get; private set; }
     

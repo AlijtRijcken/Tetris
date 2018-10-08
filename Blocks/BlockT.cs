@@ -9,10 +9,10 @@ public class BlockT : TetrisBlock
 {
     public BlockT()
     {
-        block[1, 0] = 6;
-        block[0, 1] = 6;
-        block[1, 1] = 6;
-        block[2, 0] = 6;
+        block[2, 1] = 6;
+        block[1, 2] = 6;
+        block[2, 2] = 6;
+        block[3, 1] = 6;
 
         setColor = Color.Maroon;
 

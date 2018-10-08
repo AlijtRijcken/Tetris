@@ -39,13 +39,13 @@
     </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BlockI.cs" />
-    <Compile Include="BlockJ.cs" />
-    <Compile Include="BlockL.cs" />
-    <Compile Include="BlockO.cs" />
-    <Compile Include="BlockS.cs" />
-    <Compile Include="BlockT.cs" />
-    <Compile Include="BlockZ.cs" />
+    <Compile Include="Blocks\BlockI.cs" />
+    <Compile Include="Blocks\BlockJ.cs" />
+    <Compile Include="Blocks\BlockL.cs" />
+    <Compile Include="Blocks\BlockO.cs" />
+    <Compile Include="Blocks\BlockS.cs" />
+    <Compile Include="Blocks\BlockT.cs" />
+    <Compile Include="Blocks\BlockZ.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="InputHelper.cs" />
     <Compile Include="Notes.cs" />

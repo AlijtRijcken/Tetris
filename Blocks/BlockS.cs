@@ -9,10 +9,10 @@ public class BlockS : TetrisBlock
 {
     public BlockS()
     {
-        block[0, 1] = 5;
-        block[1, 1] = 5;
-        block[1, 0] = 5;
+        block[1, 2] = 5;
+        block[2, 2] = 5;
         block[2, 1] = 5;
+        block[3, 2] = 5;
 
         setColor = Color.Purple;
     }

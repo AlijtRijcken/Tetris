@@ -21,7 +21,6 @@ class GameWorld
 
     public static Random Random { get { return random; } }
     static Random random;
-
     /// The main font of the game.
     SpriteFont font;
 
@@ -30,7 +29,8 @@ class GameWorld
 
     /// The main grid of the game.
     TetrisGrid grid;
-    BlockI block;           ///
+    TetrisBlock useBlock;
+    InputHelper input;
 
     public int score; 
 
@@ -44,21 +44,45 @@ class GameWorld
         font = TetrisGame.ContentManager.Load<SpriteFont>("SpelFont");
 
         grid = new TetrisGrid();
-        block = new BlockI();     ///////
-
+        switch (random.Next(0, 6))
+        {
+            case 0:
+                useBlock = new BlockI();
+                break;
+            case 1:
+                useBlock = new BlockJ();
+                break;
+            case 2:
+                useBlock = new BlockL();
+                break;
+            case 3:
+                useBlock = new BlockO();
+                break;
+            case 4:
+                useBlock = new BlockS();
+                break;
+            case 5:
+                useBlock = new BlockT();
+                break;
+            case 6:
+                useBlock = new BlockZ();
+                break;
+            
+        }
         score = 0; 
     }
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
     {
-
+        useBlock.Input(gameTime,inputHelper);
 
 
     }
 
     public void Update(GameTime gameTime)
     {
-
+        
+        useBlock.Update(gameTime);
         //Als een key ingedrukt, detecteer en dan doorsturen, aanroepen.  -> Tetrisblock en die controleerd weer verder. 
     }
 
@@ -66,7 +90,7 @@ class GameWorld
     {
         spriteBatch.Begin();
         grid.Draw(gameTime, spriteBatch);
-        block.Draw(gameTime, spriteBatch);
+        useBlock.Draw(gameTime, spriteBatch);
         spriteBatch.DrawString(font, "Score:" + score, new Vector2(320,5), Color.Blue);
         spriteBatch.End();
     }
