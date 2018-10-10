@@ -37,7 +37,7 @@ class TetrisGame : Game
         Content.RootDirectory = "Content";
 
         // set the desired window size
-        ScreenSize = new Point(800, 600);
+        ScreenSize = new Point(800, 640);
         graphics.PreferredBackBufferWidth = ScreenSize.X;
         graphics.PreferredBackBufferHeight = ScreenSize.Y;
 

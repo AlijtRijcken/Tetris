@@ -10,10 +10,12 @@ using System.Threading.Tasks;
 public class TetrisBlock
 {
     public int[,] block;
-    public bool setBlock;
+    public bool setBlock = false;
     int[] position;
     public Color setColor;
     InputHelper input;
+    int ticks;
+    int speed = 40;
 
     public TetrisBlock()
     {
@@ -56,36 +58,101 @@ public class TetrisBlock
     }
     public void Move(int I)
     {
+        bool test = false;
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                if(block[i,j] != 0 && TetrisGrid.Grid[position[0] + i + I , position[1] + j ]!=0)
+                {
+                    test = true;
+                }
+            }
 
-        position[0] = position[0] + I;
+        }
+        if (test == false) { position[0] = position[0] + I; ; }
+        else
+        {
+            test = false;
+        }
+        
+    }
+    public void down()
+    {
+        ticks++;
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                if (block[i, j] != 0 && TetrisGrid.Grid[position[0] + i, position[1] + j+1] != 0)
+                {
+                    setBlock = true;
+                }
+            }
+
+        }
+
+
+        if (ticks >= speed)
+        {
+            position[1]++;
+            ticks = 0;
+        }
+
     }
 
+    public void upload()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                if (block[i, j] != 0) {
+                    TetrisGrid.Grid[i + position[0], j + position[1]] = block[i, j];
+                 }
+            }
+        }
+    }
 
     public void Input(GameTime gametime, InputHelper input)
     {
 
-        if (input.KeyPressed(Keys.Z))
+        if (input.KeyPressed(Keys.Z)&&setBlock == false)
         {
             CounterRotate();
         }
-        if (input.KeyPressed(Keys.X))
+        if (input.KeyPressed(Keys.X) && setBlock == false)
         {
             Rotate();
         }
-        if (input.KeyPressed(Keys.Right))
+        if (input.KeyPressed(Keys.Right) && setBlock == false)
         {
             Move(1);
         }
-        if (input.KeyPressed(Keys.Left))
+        if (input.KeyPressed(Keys.Left) && setBlock == false)
         {
             Move(-1);
+        }
+        if (input.KeyDown(Keys.Down) && setBlock == false)
+        {
+            speed = 10;
+        }
+        if (input.KeyDown(Keys.Down)==false && setBlock == false)
+        {
+            speed = 40;
         }
     }
 
     public void Update(GameTime gameTime)
     {
-
-
+        if (setBlock == false)
+        {
+            down();
+        }
+        if (setBlock)
+        {
+            upload();
+        }
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)

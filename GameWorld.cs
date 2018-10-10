@@ -44,6 +44,11 @@ class GameWorld
         font = TetrisGame.ContentManager.Load<SpriteFont>("SpelFont");
 
         grid = new TetrisGrid();
+        Spawn();
+        score = 0; 
+    }
+    public void Spawn()
+    {
         switch (random.Next(0, 6))
         {
             case 0:
@@ -67,11 +72,9 @@ class GameWorld
             case 6:
                 useBlock = new BlockZ();
                 break;
-            
-        }
-        score = 0; 
-    }
 
+        }
+    }
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
     {
         useBlock.Input(gameTime,inputHelper);
@@ -81,7 +84,11 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
-        
+        if (useBlock.setBlock)
+        {
+            Spawn();
+
+        }
         useBlock.Update(gameTime);
         //Als een key ingedrukt, detecteer en dan doorsturen, aanroepen.  -> Tetrisblock en die controleerd weer verder. 
     }

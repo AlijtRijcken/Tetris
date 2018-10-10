@@ -21,7 +21,7 @@ class TetrisGrid
     // The number of grid elements in the y-direction.
     static public int GridHeight { get { return 20; } }
 
-    static public int[,] Grid = new int[GridWidth, GridHeight];
+    static public int[,] Grid = new int[GridWidth+2, GridHeight+1];
 
     Random random;
     private int number;
@@ -41,9 +41,9 @@ public TetrisGrid()
     //Draws the grid on the screen.
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        for (int x = 0; x < GridWidth; x++)
+        for (int x = 0; x < GridWidth+2; x++)
         {
-            for (int y = 0; y < GridHeight; y++)
+            for (int y = 0; y < GridHeight+1; y++)
             {
                 if (Grid[x, y] == 0)
                 {
@@ -77,7 +77,10 @@ public TetrisGrid()
                 {
                     spriteBatch.Draw(emptyCell, new Vector2(x * emptyCell.Width, y * emptyCell.Height), Color.BlanchedAlmond);
                 }
-
+                else if (Grid[x, y] == 8)
+                {
+                    spriteBatch.Draw(emptyCell, new Vector2(x * emptyCell.Width, y * emptyCell.Height), Color.DarkKhaki);
+                }
             }
         }
     }
@@ -114,11 +117,14 @@ public TetrisGrid()
     // Clears the grid.
     public void Clear()
     {
-        for (int x = 0; x < GridWidth; x++)
+        for (int x = 0; x < GridWidth+2; x++)
         {
             for (int y = 0; y < GridHeight; y++)
             {
-                Grid[x, y] = 0; 
+                Grid[x, y] = 0;
+                Grid[0, y] = 8;
+                Grid[GridWidth + 1,y] = 8;
+                Grid[x, GridHeight] = 8;
             }
 
         }
