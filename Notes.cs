@@ -34,7 +34,6 @@ namespace Tetris
 
         todo list
         roteren kan niet altijd, clipping met de rand
-        lineclearing
         volgend blokje zichtbaar in zijbalk
         score
         spawnen in het midden

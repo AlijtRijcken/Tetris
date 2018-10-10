@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//View, gaat alles vertonen. DRAW
+//View, gaat alles vertonen. DRAW alle draws
 namespace Tetris
 {
     class Screen

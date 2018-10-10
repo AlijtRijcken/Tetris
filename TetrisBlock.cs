@@ -15,14 +15,14 @@ public class TetrisBlock
     public Color setColor;
     InputHelper input;
     int ticks;
-    int speed = 40;
+    int speed;
 
     public TetrisBlock()
     {
         //Default Tetris block. 
         block = new int[4, 4] { { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
         setBlock = false;
-        position = new int[2] { 0, 0 };
+        position = new int[2] { 4, 0 };
     }
 
        
@@ -56,6 +56,7 @@ public class TetrisBlock
         }
         block = tempBlock;
     }
+    //links/rechts bewegen van het blockje
     public void Move(int I)
     {
         bool test = false;
@@ -77,7 +78,8 @@ public class TetrisBlock
         }
         
     }
-    public void down()
+    //vallen
+    public void Down()
     {
         ticks++;
         for (int i = 0; i < 4; i++)
@@ -91,8 +93,6 @@ public class TetrisBlock
             }
 
         }
-
-
         if (ticks >= speed)
         {
             position[1]++;
@@ -101,6 +101,7 @@ public class TetrisBlock
 
     }
 
+    //geplaatst blockje  in grid vastleggen
     public void upload()
     {
         for (int i = 0; i < 4; i++)
@@ -135,7 +136,7 @@ public class TetrisBlock
         }
         if (input.KeyDown(Keys.Down) && setBlock == false)
         {
-            speed = 10;
+            speed = 4;
         }
         if (input.KeyDown(Keys.Down)==false && setBlock == false)
         {
@@ -147,7 +148,7 @@ public class TetrisBlock
     {
         if (setBlock == false)
         {
-            down();
+            Down();
         }
         if (setBlock)
         {

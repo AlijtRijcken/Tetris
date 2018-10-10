@@ -75,11 +75,11 @@ public TetrisGrid()
                 }
                 else if (Grid[x, y] == 7)
                 {
-                    spriteBatch.Draw(emptyCell, new Vector2(x * emptyCell.Width, y * emptyCell.Height), Color.BlanchedAlmond);
+                    spriteBatch.Draw(emptyCell, new Vector2(x * emptyCell.Width, y * emptyCell.Height), Color.Orange);
                 }
                 else if (Grid[x, y] == 8)
                 {
-                    spriteBatch.Draw(emptyCell, new Vector2(x * emptyCell.Width, y * emptyCell.Height), Color.DarkKhaki);
+                    spriteBatch.Draw(emptyCell, new Vector2(x * emptyCell.Width, y * emptyCell.Height), Color.DarkTurquoise);
                 }
             }
         }

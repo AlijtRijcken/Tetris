@@ -47,9 +47,58 @@ class GameWorld
         Spawn();
         score = 0; 
     }
-    public void Spawn()
+    public void Check()
     {
-        switch (random.Next(0, 6))
+        for (int i = 0; i < TetrisGrid.GridHeight; i++)
+        {
+            bool check = false;
+            for (int j = 1; j < TetrisGrid.GridWidth + 1; j++)
+            {
+
+                if (TetrisGrid.Grid[j, i] == 0)
+                {
+                    check = true;
+                }
+            }
+
+            if (check == false)
+            {
+                for (int k = 1; k <TetrisGrid.GridWidth+1; k++)
+                {
+                    TetrisGrid.Grid[k,i] = 0;
+                }
+
+            }
+        }
+    }
+    public void CheckLines()
+    {
+        for (int i = TetrisGrid.GridHeight; i >= 0; i--)
+        {
+            bool tester = false;
+            for (int j = 1; j < TetrisGrid.GridWidth + 1; j++)
+            {
+                if (TetrisGrid.Grid[j, i] != 0)
+                {
+                    tester = true;
+                }
+            }
+            if (tester == false)
+            {
+                for (int y = i; y >= 1; y--)
+                {
+                    for (int j = 1; j < TetrisGrid.GridWidth + 1; j++)
+                    {
+                        TetrisGrid.Grid[j, y] = TetrisGrid.Grid[j, y-1];
+                    }
+                }
+             }
+        }
+    }
+        //spawns random block (kan dit in tetrisblock?
+        public void Spawn()
+    {
+        switch (random.Next(0, 7))
         {
             case 0:
                 useBlock = new BlockI();
@@ -75,8 +124,10 @@ class GameWorld
 
         }
     }
+    
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
     {
+        //input van block
         useBlock.Input(gameTime,inputHelper);
 
 
@@ -84,13 +135,15 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
+        //spawnt nieuw random block als vorige is geplaatst
         if (useBlock.setBlock)
         {
             Spawn();
-
+            Check();
+            CheckLines();
         }
         useBlock.Update(gameTime);
-        //Als een key ingedrukt, detecteer en dan doorsturen, aanroepen.  -> Tetrisblock en die controleerd weer verder. 
+
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
