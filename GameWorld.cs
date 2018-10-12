@@ -90,6 +90,7 @@ class GameWorld
 
         }
         useBlock.Update(gameTime);
+        
         //Als een key ingedrukt, detecteer en dan doorsturen, aanroepen.  -> Tetrisblock en die controleerd weer verder. 
     }
 
