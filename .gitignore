@@ -1,0 +1,13 @@
+
+Content/obj/Windows/.mgcontent
+Content/obj/Windows/.mgcontent
+Content/obj/Windows/.mgcontent
+*.mgcontent
+GameWorld.cs
+GameWorld.cs
+obj/x86/Debug/Tetris.exe
+obj/x86/Debug/Tetris.pdb
+obj/x86/Debug/TetrisTemplate.csproj.CoreCompileInputs.cache
+TetrisBlock.cs
+TetrisGame.cs
+TetrisGrid.cs

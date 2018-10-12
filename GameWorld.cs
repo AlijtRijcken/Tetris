@@ -144,6 +144,7 @@ class GameWorld
         }
         useBlock.Update(gameTime);
         CheckLines();  //miste soms lijnen als hij in if staat, aanpassen methode?
+
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)

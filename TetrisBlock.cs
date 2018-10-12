@@ -9,14 +9,16 @@ using System.Threading.Tasks;
 
 public class TetrisBlock
 {
-    public int[,] block;
+    public int[,] block;                //default array[4,4]
     public bool setBlock = false;
     int[] position;
     public Color setColor;
+
     InputHelper input;
     int ticks;
     int speed;
     int[,] Fakegrid =new int[TetrisGrid.GridWidth + 2, TetrisGrid.GridHeight + 1];
+    int length = 4; 
 
     public TetrisBlock()
     {
@@ -50,13 +52,13 @@ public class TetrisBlock
     }
     public void CounterRotate()
     {
-        int[,] tempBlock = new int[4, 4];
+        int[,] tempBlock = new int[length, length];
 
-        for (int x = 0; x < 4; x++)
+        for (int x = 0; x < length; x++)
         {
-            for (int y = 0; y < 4; y++)
+            for (int y = 0; y < length; y++)
             {
-                tempBlock[x, y] = block[3-y, x];
+                tempBlock[x, y] = block[3 - y, x];
            }
 
         }
@@ -64,11 +66,11 @@ public class TetrisBlock
     }
     public void Rotate()
     {
-        int[,] tempBlock = new int[4, 4];
+        int[,] tempBlock = new int[length, length];
 
-        for (int x = 0; x < 4; x++)
+        for (int x = 0; x < length; x++)
         {
-            for (int y = 0; y < 4; y++)
+            for (int y = 0; y < length; y++)
             {
                 tempBlock[x, y] = block[y, 3 - x];
             }
@@ -88,13 +90,15 @@ public class TetrisBlock
 
         block = tempBlock;
     }
+
     //links/rechts bewegen van het blockje
     public void Move(int I)
+
     {
         bool test = false;
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < length; i++)
         {
-            for (int j = 0; j < 4; j++)
+            for (int j = 0; j < length; j++)
             {
                 if (position[1] >= 0)
                 {
@@ -104,23 +108,27 @@ public class TetrisBlock
                     }
                 }
             }
-
         }
-        if (test == false) { position[0] = position[0] + I; ; }
+        if (test == false)
+        {
+            position[0] = position[0] + I;
+        }
         else
         {
             test = false;
         }
         
     }
+
     //vallen
     public void Down()
     {
         ticks++;
         int count = 0;
         for (int i = 0; i < 4; i++)
+
         {
-            for (int j = 0; j < 4; j++)
+            for (int j = 0; j < length; j++)
             {
                 if(position[1]>=0)
                 {
@@ -138,6 +146,7 @@ public class TetrisBlock
 
         }
         if (ticks >= speed && count == 0)
+
         {
             position[1]++;
             ticks = 0;
@@ -145,16 +154,19 @@ public class TetrisBlock
 
     }
 
+
     //geplaatst blockje  in grid vastleggen
-    public void Upload(int[,] grid,int[,] Blockie)
+    public void Upload(int[,] grid,int[,] TempBlock)
+
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < length; i++)
         {
-            for (int j = 0; j < 4; j++)
+            for (int j = 0; j < length; j++)
             {
-                if (Blockie[i, j] != 0) {
+                if (TempBlock[i, j] != 0) {
                     grid[i + position[0], j + position[1]] = block[i, j];
                  }
+
             }
         }
     }
@@ -200,6 +212,7 @@ public class TetrisBlock
         }
     }
 
+    //moet dus eigenlijk in de screen class?!
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         for (int i = 0; i < block.GetLength(0); i++)
@@ -213,9 +226,6 @@ public class TetrisBlock
         }
 
     }
-
-    //movement
-    //rotation
 
 }
 

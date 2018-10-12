@@ -21,11 +21,8 @@ class TetrisGrid
     // The number of grid elements in the y-direction.
     static public int GridHeight { get { return 20; } }
 
-    static public int[,] Grid = new int[GridWidth+2, GridHeight+1];
-
-    Random random;
-    private int number;
-    TetrisBlock block; 
+    // create the grid
+    static public int[,] Grid = new int[GridWidth+2, GridHeight+1]; 
  
 // Creates a new TetrisGrid.
 public TetrisGrid()
@@ -33,12 +30,10 @@ public TetrisGrid()
         emptyCell = TetrisGame.ContentManager.Load<Texture2D>("block");
         position = Vector2.Zero;
 
-        //number = random.Next(0, 7);
-
         Clear();
     }
 
-    //Draws the grid on the screen.
+    //Draws the grid on the screen.  --> Screen
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         for (int x = 0; x < GridWidth+2; x++)
@@ -85,34 +80,6 @@ public TetrisGrid()
         }
     }
 
-    /*public void SpawnNextBlock()
-    {
-        switch (number)
-        {
-            case 0;
-                block = new BlockI();
-                break;
-            case 1;
-                block = new BlockJ();
-                break;
-            case 2;
-                block = new BlockL();
-                break;
-            case 3;
-                block = new BlockO();
-                break;
-            case 4;
-                block = new BlockS();
-                break;
-            case 5;
-                block = new BlockT();
-                break;
-            case 6;
-                block = new BlockZ();
-                break;
-        }
-    }
-    */
 
     // Clears the grid.
     public void Clear()
@@ -121,7 +88,9 @@ public TetrisGrid()
         {
             for (int y = 0; y < GridHeight; y++)
             {
-                Grid[x, y] = 0;
+                Grid[x, y] = 0;                     //alle mogelijke combies van x,y op 0 zetten. 
+               
+                //Groene rand inbrengen. 
                 Grid[0, y] = 8;
                 Grid[GridWidth + 1,y] = 8;
                 Grid[x, GridHeight] = 8;
