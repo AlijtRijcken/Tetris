@@ -37,6 +37,8 @@ namespace Tetris
         volgend blokje zichtbaar in zijbalk
         score
         versnellen drops aan hand van score
+        gamestates
+        sounds
          */
 
     }

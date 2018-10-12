@@ -109,6 +109,13 @@ public class TetrisBlock
                         test = true;
                     }
                 }
+                else
+                {
+                    if (block[i, j] != 0 && TetrisGrid.Grid[position[0] + i + I,j] != 0)
+                    {
+                        test = true;
+                    }
+                }
             }
         }
         if (test == false)
