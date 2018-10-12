@@ -16,18 +16,38 @@ public class TetrisBlock
     InputHelper input;
     int ticks;
     int speed;
+    int[,] Fakegrid =new int[TetrisGrid.GridWidth + 2, TetrisGrid.GridHeight + 1];
 
     public TetrisBlock()
     {
         //Default Tetris block. 
+
         block = new int[4, 4] { { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
         setBlock = false;
-        position = new int[2] { 4, 0 };
+        position = new int[2] { 4, -4 };
     }
 
-       
+
     //rotation current tetrisblock. 
     //rotation matrix -> when two matrixes available a and b, with a given. b(x,y) = a(y, x)
+    public void CreateGrid()
+    {
+        for (int x = 0; x < TetrisGrid.GridWidth + 2; x++)
+        {
+            for (int y = 0; y < TetrisGrid.GridHeight; y++)
+            {
+                if (TetrisGrid.Grid[x,y] == 0)
+                {
+                    Fakegrid[x, y] = 0;
+                }
+                else if(TetrisGrid.Grid[x,y]!=0)
+                {
+                    Fakegrid[x, y] = 1;
+                }
+            }
+
+        }
+    }
     public void CounterRotate()
     {
         int[,] tempBlock = new int[4, 4];
@@ -54,6 +74,18 @@ public class TetrisBlock
             }
 
         }
+        //CreateGrid();
+        //for (int i = 0; i < 4; i++)
+        //{
+        //    for (int j = 0; j < 4; j++)
+        //    {
+        //        if (tempBlock[i, j] != 0)
+        //        {
+        //            tempBlock[i + position[0], j + position[1]] ++;
+        //        }
+        //    }
+        //}
+
         block = tempBlock;
     }
     //links/rechts bewegen van het blockje
@@ -64,9 +96,12 @@ public class TetrisBlock
         {
             for (int j = 0; j < 4; j++)
             {
-                if(block[i,j] != 0 && TetrisGrid.Grid[position[0] + i + I , position[1] + j ]!=0)
+                if (position[1] >= 0)
                 {
-                    test = true;
+                    if (block[i, j] != 0 && TetrisGrid.Grid[position[0] + i + I, position[1] + j] != 0)
+                    {
+                        test = true;
+                    }
                 }
             }
 
@@ -82,18 +117,27 @@ public class TetrisBlock
     public void Down()
     {
         ticks++;
+        int count = 0;
         for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < 4; j++)
             {
-                if (block[i, j] != 0 && TetrisGrid.Grid[position[0] + i, position[1] + j+1] != 0)
+                if(position[1]>=0)
                 {
-                    setBlock = true;
+
+                    if (block[i, j] != 0 && TetrisGrid.Grid[position[0] + i, position[1] + j + 1] != 0)
+                    {
+                        count = ticks;
+                        if (count >= 60)
+                        {
+                            setBlock = true;
+                        }
+                    }
                 }
             }
 
         }
-        if (ticks >= speed)
+        if (ticks >= speed && count == 0)
         {
             position[1]++;
             ticks = 0;
@@ -102,14 +146,14 @@ public class TetrisBlock
     }
 
     //geplaatst blockje  in grid vastleggen
-    public void upload()
+    public void Upload(int[,] grid,int[,] Blockie)
     {
         for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < 4; j++)
             {
-                if (block[i, j] != 0) {
-                    TetrisGrid.Grid[i + position[0], j + position[1]] = block[i, j];
+                if (Blockie[i, j] != 0) {
+                    grid[i + position[0], j + position[1]] = block[i, j];
                  }
             }
         }
@@ -136,7 +180,7 @@ public class TetrisBlock
         }
         if (input.KeyDown(Keys.Down) && setBlock == false)
         {
-            speed = 4;
+            speed = 2;
         }
         if (input.KeyDown(Keys.Down)==false && setBlock == false)
         {
@@ -152,7 +196,7 @@ public class TetrisBlock
         }
         if (setBlock)
         {
-            upload();
+            Upload(TetrisGrid.Grid,block);
         }
     }
 
