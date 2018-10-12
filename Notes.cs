@@ -33,12 +33,9 @@ namespace Tetris
         }
 
         todo list
-        roteren kan niet altijd, clipping met de rand
+      
         volgend blokje zichtbaar in zijbalk
         score
-        spawnen in het midden
-        niet gelijk setblok omzetten
-        instantdrop?
         versnellen drops aan hand van score
          */
 

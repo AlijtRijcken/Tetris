@@ -17,7 +17,7 @@ public class TetrisBlock
     InputHelper input;
     int ticks;
     int speed;
-    int[,] Fakegrid =new int[TetrisGrid.GridWidth + 2, TetrisGrid.GridHeight + 1];
+    int[,] Fakegrid = new int[TetrisGrid.GridWidth + 2, TetrisGrid.GridHeight + 1];
     int length = 4; 
 
     public TetrisBlock()
@@ -30,8 +30,6 @@ public class TetrisBlock
     }
 
 
-    //rotation current tetrisblock. 
-    //rotation matrix -> when two matrixes available a and b, with a given. b(x,y) = a(y, x)
     public void CreateGrid()
     {
         for (int x = 0; x < TetrisGrid.GridWidth + 2; x++)
@@ -50,6 +48,9 @@ public class TetrisBlock
 
         }
     }
+
+    //rotation current tetrisblock. 
+    //rotation matrix -> when two matrixes available a and b, with a given. b(x,y) = a(y, x)
     public void CounterRotate()
     {
         int[,] tempBlock = new int[length, length];
@@ -76,6 +77,7 @@ public class TetrisBlock
             }
 
         }
+        
         //CreateGrid();
         //for (int i = 0; i < 4; i++)
         //{
@@ -92,7 +94,7 @@ public class TetrisBlock
     }
 
     //links/rechts bewegen van het blockje
-    public void Move(int I)
+    public void Movement(int I)
 
     {
         bool test = false;
@@ -121,12 +123,12 @@ public class TetrisBlock
     }
 
     //vallen
-    public void Down()
+    public void DownMovement()
     {
+        //Gametime
         ticks++;
         int count = 0;
         for (int i = 0; i < 4; i++)
-
         {
             for (int j = 0; j < length; j++)
             {
@@ -143,10 +145,8 @@ public class TetrisBlock
                     }
                 }
             }
-
         }
         if (ticks >= speed && count == 0)
-
         {
             position[1]++;
             ticks = 0;
@@ -154,9 +154,8 @@ public class TetrisBlock
 
     }
 
-
     //geplaatst blockje  in grid vastleggen
-    public void Upload(int[,] grid,int[,] TempBlock)
+    public void UploadGrid(int[,] grid,int[,] TempBlock)
 
     {
         for (int i = 0; i < length; i++)
@@ -173,7 +172,6 @@ public class TetrisBlock
 
     public void Input(GameTime gametime, InputHelper input)
     {
-
         if (input.KeyPressed(Keys.Z)&&setBlock == false)
         {
             CounterRotate();
@@ -184,11 +182,11 @@ public class TetrisBlock
         }
         if (input.KeyPressed(Keys.Right) && setBlock == false)
         {
-            Move(1);
+            Movement(1);
         }
         if (input.KeyPressed(Keys.Left) && setBlock == false)
         {
-            Move(-1);
+            Movement(-1);
         }
         if (input.KeyDown(Keys.Down) && setBlock == false)
         {
@@ -204,15 +202,14 @@ public class TetrisBlock
     {
         if (setBlock == false)
         {
-            Down();
+            DownMovement();
         }
         if (setBlock)
         {
-            Upload(TetrisGrid.Grid,block);
+            UploadGrid(TetrisGrid.Grid,block);
         }
     }
 
-    //moet dus eigenlijk in de screen class?!
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         for (int i = 0; i < block.GetLength(0); i++)

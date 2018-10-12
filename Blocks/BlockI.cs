@@ -12,7 +12,7 @@ public class BlockI : TetrisBlock
     {
         block[1, 0] = 4;
         block[1, 1] = 4;
-        block[1, 2] = 4;
+        block[1, 2] = 4   ;
         block[1, 3] = 4;
 
         setColor = Color.Pink; 

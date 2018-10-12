@@ -6,7 +6,6 @@ using System;
 
 /// A class for representing the game world.
 /// This contains the grid, the falling block, and everything else that the player can see/do.
-/// 
 //CONTROLER, 
 class GameWorld
 {
@@ -20,6 +19,7 @@ class GameWorld
     /// The random-number generator of the game.
 
     public static Random Random { get { return random; } }
+
     static Random random;
     /// The main font of the game.
     SpriteFont font;
@@ -47,7 +47,9 @@ class GameWorld
         Spawn();
         score = 0; 
     }
-    public void Check()
+
+    //Controllen van volle lines
+    public void CheckIfFullLine()
     {
         for (int i = 0; i < TetrisGrid.GridHeight; i++)
         {
@@ -71,7 +73,8 @@ class GameWorld
             }
         }
     }
-    public void CheckLines()
+    //Check if emptylines
+    public void CheckIfEmptyLines()
     {
         for (int i = TetrisGrid.GridHeight; i >= 0; i--)
         {
@@ -96,7 +99,7 @@ class GameWorld
         }
     }
         //spawns random block (kan dit in tetrisblock?
-        public void Spawn()
+    public void Spawn()
     {
         switch (random.Next(0, 7))
         {
@@ -129,8 +132,6 @@ class GameWorld
     {
         //input van block
         useBlock.Input(gameTime,inputHelper);
-
-
     }
 
     public void Update(GameTime gameTime)
@@ -139,11 +140,11 @@ class GameWorld
         if (useBlock.setBlock)
         {
             Spawn();
-            Check();
+            CheckIfFullLine();
             
         }
         useBlock.Update(gameTime);
-        CheckLines();  //miste soms lijnen als hij in if staat, aanpassen methode?
+        CheckIfEmptyLines();  //miste soms lijnen als hij in if staat, aanpassen methode?
 
     }
 
@@ -158,6 +159,7 @@ class GameWorld
 
     public void Reset()
     {
+
     }
 
 }
