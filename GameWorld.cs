@@ -10,13 +10,7 @@ using System;
 //CONTROLER, 
 class GameWorld
 {
-    /// An enum for the different game states that the game can have.
-    enum GameState
-    {
-        Playing,
-        GameOver
-    }
- 
+
     /// The random-number generator of the game.
 
     public static Random Random { get { return random; } }
@@ -24,9 +18,8 @@ class GameWorld
     /// The main font of the game.
     SpriteFont font;
 
-    /// The current game state.
-    GameState gameState;
 
+    public int state = 0;
     /// The main grid of the game.
     TetrisGrid grid;
     TetrisBlock useBlock;
@@ -39,13 +32,25 @@ class GameWorld
     public GameWorld()
     {
         random = new Random();
-        gameState = GameState.Playing;
+
 
         font = TetrisGame.ContentManager.Load<SpriteFont>("SpelFont");
 
         grid = new TetrisGrid();
         Spawn();
         score = 0; 
+    }
+    public void CheckFinish()
+    {
+        for (int i = 1; i < TetrisGrid.GridWidth + 1; i++)
+        {
+            if (TetrisGrid.Grid[i, 0] != 0)
+            {
+                //TetrisGame.GameState.Playing = TetrisGame.GameState.GameOver;
+                state = 1;
+                grid.Clear();
+            }
+        }
     }
     public void Check()
     {
@@ -98,7 +103,7 @@ class GameWorld
         //spawns random block (kan dit in tetrisblock?
         public void Spawn()
     {
-        switch (random.Next(0, 7))
+        switch (random.Next(0,1))
         {
             case 0:
                 useBlock = new BlockI();
@@ -140,10 +145,14 @@ class GameWorld
         {
             Spawn();
             Check();
-            
+            CheckFinish();
+            for (int i = 0; i < 4; i++)
+            {
+                CheckLines();
+            }
         }
         useBlock.Update(gameTime);
-        CheckLines();  //miste soms lijnen als hij in if staat, aanpassen methode?
+          //miste soms lijnen als hij in if staat, aanpassen methode?
 
     }
 

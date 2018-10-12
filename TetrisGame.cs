@@ -7,8 +7,16 @@ class TetrisGame : Game
 {
     SpriteBatch spriteBatch;
     InputHelper inputHelper;
-    GameWorld gameWorld;
- 
+    public GameWorld gameWorld;
+    /// An enum for the different game states that the game can have.
+    public enum GameState
+    {
+        Playing,
+        GameOver
+    }
+    /// The current game state.
+    public GameState gameState = GameState.GameOver;
+    
     /// A static reference to the ContentManager object, used for loading assets.
     public static ContentManager ContentManager { get; private set; }
     
@@ -26,7 +34,9 @@ class TetrisGame : Game
     }
 
     public TetrisGame()
-    {        
+    {
+        gameState = GameState.Playing;
+
         // initialize the graphics device
         GraphicsDeviceManager graphics = new GraphicsDeviceManager(this);
 
@@ -57,14 +67,41 @@ class TetrisGame : Game
     protected override void Update(GameTime gameTime)
     {
         inputHelper.Update(gameTime);
-        gameWorld.HandleInput(gameTime, inputHelper);
-        gameWorld.Update(gameTime);
+        if (gameWorld.state == 1) { gameState =GameState.GameOver; }
+        switch (gameState)
+        {
+            case GameState.Playing:
+                gameWorld.Update(gameTime);
+                gameWorld.HandleInput(gameTime, inputHelper);
+                break;
+            case GameState.GameOver:
+
+                break;
+            default:
+                break;
+        }
+
+
+
     }
 
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.White);
-        gameWorld.Draw(gameTime, spriteBatch);
+        if (gameWorld.state == 1) { gameState = GameState.GameOver; }
+        switch (gameState)
+        {
+            case GameState.Playing:
+                gameWorld.Draw(gameTime, spriteBatch);
+                break;
+            case GameState.GameOver:
+
+                break;
+            default:
+                break;
+        }
+
+
     }
 }
 
