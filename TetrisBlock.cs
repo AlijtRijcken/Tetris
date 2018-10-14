@@ -51,7 +51,7 @@ public class TetrisBlock
 
     //rotation current tetrisblock. 
     //rotation matrix -> when two matrixes available a and b, with a given. b(x,y) = a(y, x)
-    public void CounterRotate()
+    private void CounterRotate()
     {
         int[,] tempBlock = new int[length, length];
 
@@ -64,8 +64,28 @@ public class TetrisBlock
 
         }
         block = tempBlock;
+
+        bool test = false;
+        for (int i = 0; i < length; i++)
+        {
+            for (int j = 0; j < length; j++)
+            {
+                if (position[1] >= 0)
+                {
+                    if (block[i, j] != 0 && TetrisGrid.Grid[position[0] + i, position[1] + j] != 0)
+                    {
+                        test = true;
+                    }
+                }
+
+            }
+        }
+        if (test == true)
+        {
+            Rotate();
+        }
     }
-    public void Rotate()
+    private void Rotate()
     {
         int[,] tempBlock = new int[length, length];
 
@@ -77,20 +97,27 @@ public class TetrisBlock
             }
 
         }
-        
-        //CreateGrid();
-        //for (int i = 0; i < 4; i++)
-        //{
-        //    for (int j = 0; j < 4; j++)
-        //    {
-        //        if (tempBlock[i, j] != 0)
-        //        {
-        //            tempBlock[i + position[0], j + position[1]] ++;
-        //        }
-        //    }
-        //}
-
         block = tempBlock;
+
+        bool test = false;
+        for (int i = 0; i < length; i++)
+        {
+            for (int j = 0; j < length; j++)
+            {
+                if (position[1] >= 0)
+                {
+                    if (block[i, j] != 0 && TetrisGrid.Grid[position[0] + i, position[1] + j] != 0)
+                    {
+                        test = true;
+                    }
+                }
+                
+            }
+        }
+        if (test == true)
+        {
+            CounterRotate();
+        }
     }
 
     //links/rechts bewegen van het blockje
@@ -135,7 +162,7 @@ public class TetrisBlock
         //Gametime
         ticks++;
         int count = 0;
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < length; i++)
         {
             for (int j = 0; j < length; j++)
             {
@@ -160,7 +187,28 @@ public class TetrisBlock
         }
 
     }
+    //public void Instantdrop()
+    //{
+    //    int highest = 0;
+    //    for (int i = 0; i < length; i++)
+    //    {
+    //        for (int j = 0; j < length; j++)
+    //        {
+    //            if(block[i,j] != 0)
+    //            {
+    //                for (int k = j; k < TetrisGrid.GridHeight; k++)
+    //                {
+    //                    if (TetrisGrid.Grid[i, k] != 0)
+    //                    {
+    //                        highest = k;
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    }
+    //    position[1] = highest;
 
+    //}
     //geplaatst blockje  in grid vastleggen
     public void UploadGrid(int[,] grid,int[,] TempBlock)
 
@@ -197,7 +245,11 @@ public class TetrisBlock
         }
         if (input.KeyDown(Keys.Down) && setBlock == false)
         {
-            speed = 2;
+            speed = 4;
+        }
+        if (input.KeyDown(Keys.Space) && setBlock == false)
+        {
+            Instantdrop();
         }
         if (input.KeyDown(Keys.Down)==false && setBlock == false)
         {

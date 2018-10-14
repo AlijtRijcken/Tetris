@@ -10,24 +10,16 @@ using System;
 class GameWorld
 {
 
-    /// The random-number generator of the game.
-
     public static Random Random { get { return random; } }
-
     static Random random;
     /// The main font of the game.
     SpriteFont font;
-
-
     public int state = 0;
-    /// The main grid of the game.
     TetrisGrid grid;
     TetrisBlock useBlock;
     InputHelper input;
-
-    public int score; 
-
-    public int Score { get { return score; } set { score = value;  } }
+    public int score;
+    public int Score { get { return score; } set { score = value; } }
 
     public GameWorld()
     {
@@ -105,7 +97,7 @@ class GameWorld
         //spawns random block (kan dit in tetrisblock?
     public void Spawn()
     {
-        switch (random.Next(0,1))
+        switch (random.Next(0,7))
         {
             case 0:
                 useBlock = new BlockI();
@@ -148,7 +140,7 @@ class GameWorld
             CheckFinish();
             for (int i = 0; i < 4; i++)
             {
-                CheckLines();
+                CheckIfEmptyLines();
             }
         }
         useBlock.Update(gameTime);
