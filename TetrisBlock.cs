@@ -11,14 +11,12 @@ public class TetrisBlock
 {
     public int[,] block;                //default array[4,4]
     public bool setBlock = false;
-    int[] position;
+    public bool Preview = false;
+    public int[] position;
     public Color setColor;
-
-    InputHelper input;
     int ticks;
     int speed;
     public int Basespeed = 0;
-    int[,] Fakegrid = new int[TetrisGrid.GridWidth + 2, TetrisGrid.GridHeight + 1];
     int length = 4; 
 
     public TetrisBlock()
@@ -29,26 +27,6 @@ public class TetrisBlock
         setBlock = false;
         position = new int[2] { 4, -4 };
         speed = Basespeed;
-    }
-
-
-    public void CreateGrid()
-    {
-        for (int x = 0; x < TetrisGrid.GridWidth + 2; x++)
-        {
-            for (int y = 0; y < TetrisGrid.GridHeight; y++)
-            {
-                if (TetrisGrid.Grid[x,y] == 0)
-                {
-                    Fakegrid[x, y] = 0;
-                }
-                else if(TetrisGrid.Grid[x,y]!=0)
-                {
-                    Fakegrid[x, y] = 1;
-                }
-            }
-
-        }
     }
 
     //rotation current tetrisblock. 
@@ -249,8 +227,10 @@ public class TetrisBlock
         }
     }
 
+
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
+
         for (int i = 0; i < block.GetLength(0); i++)
         {
             for (int j = 0; j < block.GetLength(1); j++)

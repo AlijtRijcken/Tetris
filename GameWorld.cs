@@ -13,11 +13,12 @@ class GameWorld
     public static Random Random { get { return random; } }
     static Random random;
     /// The main font of the game.
-    SpriteFont font;
-    public int state = 0;
+    public SpriteFont font;
+    public bool state = false;
     TetrisGrid grid;
     TetrisBlock useBlock;
-    InputHelper input;
+    TetrisBlock previewBlock;
+    TetrisBlock type;
     public int score;
     public int Score { get { return score; } set { score = value; } }
     int nextblock;
@@ -26,10 +27,13 @@ class GameWorld
     {
         
         random = new Random();
-        nextblock = random.Next(0, 7);
+        previewBlock = new TetrisBlock();
         font = TetrisGame.ContentManager.Load<SpriteFont>("SpelFont");
         grid = new TetrisGrid();
+        nextblock = random.Next(0, 7);
         Spawn();
+        nextblock = random.Next(0, 7);
+        useBlock = type;
         score = 0; 
     }
     public void CheckFinish()
@@ -39,7 +43,7 @@ class GameWorld
             if (TetrisGrid.Grid[i, 0] != 0)
             {
                 //TetrisGame.GameState.Playing = TetrisGame.GameState.GameOver;
-                state = 1;
+                state = true;
                 grid.Clear();
             }
         }
@@ -70,7 +74,7 @@ class GameWorld
 
             }
         }
-        score += multiplier;
+        score += (int)Math.Round(multiplier * 1.25f);
     }
     //Check if emptylines
     public void CheckIfEmptyLines()
@@ -104,30 +108,30 @@ class GameWorld
         switch (nextblock)
         {
             case 0:
-                useBlock = new BlockI();
+                type = new BlockI();
                 break;
             case 1:
-                useBlock = new BlockJ();
+                type = new BlockJ();
                 break;
             case 2:
-                useBlock = new BlockL();
+                type = new BlockL();
                 break;
             case 3:
-                useBlock = new BlockO();
+                type = new BlockO();
                 break;
             case 4:
-                useBlock = new BlockS();
+                type = new BlockS();
                 break;
             case 5:
-                useBlock = new BlockT();
+                type = new BlockT();
                 break;
             case 6:
-                useBlock = new BlockZ();
+                type = new BlockZ();
                 break;
 
         }
         //level snelheid aanpassing.
-        useBlock.Basespeed = 40-score*3;
+        type.Basespeed = 40-score*2;
     }
     
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
@@ -138,6 +142,7 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
+       
         //spawnt nieuw random block als vorige is geplaatst
         if (useBlock.setBlock)
         {
@@ -149,11 +154,13 @@ class GameWorld
                 CheckIfEmptyLines();
             }
             Spawn();
+            useBlock = type;
             nextblock = random.Next(0, 7);
+            Spawn();
+            previewBlock = type;
+            previewBlock.position = new int[2] { 12, 3 };
         }
         useBlock.Update(gameTime);
-          //miste soms lijnen als hij in if staat, aanpassen methode?
-
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -161,7 +168,8 @@ class GameWorld
         spriteBatch.Begin();
         grid.Draw(gameTime, spriteBatch);
         useBlock.Draw(gameTime, spriteBatch);
-        spriteBatch.DrawString(font, "Score:" + score, new Vector2(340,5), Color.Blue);
+        previewBlock.Draw(gameTime, spriteBatch);
+        spriteBatch.DrawString(font, "Score:" + score, new Vector2(360,5), Color.Blue);
         spriteBatch.End();
     }
 

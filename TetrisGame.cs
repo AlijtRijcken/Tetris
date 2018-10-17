@@ -67,7 +67,7 @@ class TetrisGame : Game
     protected override void Update(GameTime gameTime)
     {
         inputHelper.Update(gameTime);
-        if (gameWorld.state == 1) { gameState =GameState.GameOver; }
+        if (gameWorld.state == true) { gameState =GameState.GameOver; }
         switch (gameState)
         {
             case GameState.Playing:
@@ -87,8 +87,10 @@ class TetrisGame : Game
 
     protected override void Draw(GameTime gameTime)
     {
+        
+
         GraphicsDevice.Clear(Color.White);
-        if (gameWorld.state == 1) { gameState = GameState.GameOver; }
+        if (gameWorld.state == true) { gameState = GameState.GameOver; }
         switch (gameState)
         {
             case GameState.Playing:
@@ -96,11 +98,16 @@ class TetrisGame : Game
                 break;
             case GameState.GameOver:
 
+                spriteBatch.Begin();
+                spriteBatch.DrawString(gameWorld.font, "Score:" + gameWorld.score, new Vector2(400, 200), Color.Blue);
+                spriteBatch.End();
                 break;
             default:
                 break;
         }
 
+
+        
 
     }
 }

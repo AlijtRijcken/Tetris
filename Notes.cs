@@ -33,11 +33,6 @@ namespace Tetris
         }
 
         todo list
-      
-        volgend blokje zichtbaar in zijbalk
-        score
-        versnellen drops aan hand van score
-        gamestates
         sounds
          */
 
