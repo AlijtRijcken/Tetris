@@ -79,3 +79,5 @@ C:\Users\Pjeromaster\Documents\GitHub\Tetris\bin\Windows\x86\Debug\SharpDX.Direc
 C:\Users\Pjeromaster\Documents\GitHub\Tetris\bin\Windows\x86\Debug\SharpDX.XInput.xml
 C:\Users\Pjeromaster\Documents\GitHub\Tetris\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\Pjeromaster\Documents\GitHub\Tetris\obj\x86\Debug\TetrisTemplate.csproj.CopyComplete
+C:\Users\Alijt Rijcken\Documents\GitHub\Tetris\bin\Windows\x86\Debug\Content\snd_music.wma
+C:\Users\Alijt Rijcken\Documents\GitHub\Tetris\bin\Windows\x86\Debug\Content\snd_music.xnb

@@ -6,5 +6,7 @@
   <SourceFiles>
     <File>C:/Users/Alijt Rijcken/Documents/GitHub/Tetris/Content/SpelFont.spritefont</File>
     <File>C:/Users/Alijt Rijcken/Documents/GitHub/Tetris/Content/block.png</File>
+    <File>C:/Users/Alijt Rijcken/Documents/GitHub/Tetris/Content/snd_music.wma</File>
+    <File>C:/Users/Alijt Rijcken/Documents/GitHub/Tetris/Content/pop.wav</File>
   </SourceFiles>
 </SourceFileCollection>

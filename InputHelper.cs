@@ -18,9 +18,6 @@ public class InputHelper
         previousKeyboardState = currentKeyboardState;
         currentMouseState = Mouse.GetState();
         currentKeyboardState = Keyboard.GetState();
-
-       // if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-           //Exit();
     }
 
     /// Gets the current position of the mouse cursor.

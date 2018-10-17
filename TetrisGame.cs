@@ -2,12 +2,17 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 class TetrisGame : Game
 {
     SpriteBatch spriteBatch;
     InputHelper inputHelper;
     public GameWorld gameWorld;
+    Song backgroundMusic;
+
     /// An enum for the different game states that the game can have.
     public enum GameState
     {
@@ -59,6 +64,9 @@ class TetrisGame : Game
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
 
+        //background music, Enjoy!
+        backgroundMusic = Content.Load<Song>("snd_music");
+
         // create and reset the game world
         gameWorld = new GameWorld();
         gameWorld.Reset();
@@ -66,6 +74,8 @@ class TetrisGame : Game
 
     protected override void Update(GameTime gameTime)
     {
+        MediaPlayer.Play(backgroundMusic);          ///Modifaction
+
         inputHelper.Update(gameTime);
         if (gameWorld.state == true) { gameState =GameState.GameOver; }
         switch (gameState)
@@ -81,7 +91,9 @@ class TetrisGame : Game
                 break;
         }
 
-
+        //optional exit function
+        if (inputHelper.KeyDown(Keys.Escape))
+            Exit();
 
     }
 

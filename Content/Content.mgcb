@@ -32,3 +32,15 @@
 /processorParam:TextureFormat=Color
 /build:block.png
 
+#begin snd_music.wma
+/importer:WmaImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:snd_music.wma
+
+#begin pop.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:pop.wav
+

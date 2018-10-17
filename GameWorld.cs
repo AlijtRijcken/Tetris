@@ -34,9 +34,11 @@ class GameWorld
         Spawn();
         nextblock = random.Next(0, 7);
         useBlock = type;
-        score = 0; 
+        score = 0;
     }
-    public void CheckFinish()
+
+    //check if death row contains values other than zero, ifso Game over
+    public void CheckIfGameOver()
     {
         for (int i = 1; i < TetrisGrid.GridWidth + 1; i++)
         {
@@ -48,7 +50,9 @@ class GameWorld
             }
         }
     }
-    public void Check()
+    
+    //Check if full rows 
+    public void CheckIfFullRow()
     {
         int multiplier = 0;
         for (int i = 0; i < TetrisGrid.GridHeight; i++)
@@ -77,6 +81,7 @@ class GameWorld
 
         score += Math.Round(multiplier * 1.25);            //meer punten
     }
+    
     //Check if emptylines
     public void CheckIfEmptyLines()
     {
@@ -150,8 +155,8 @@ class GameWorld
         if (useBlock.setBlock)
         {
             
-            Check();
-            CheckFinish();
+            CheckIfFullRow();
+            CheckIfGameOver();
             for (int i = 0; i < 4; i++)
             {
                 CheckIfEmptyLines();
