@@ -19,7 +19,7 @@ public class TetrisBlock
     int speed;
     public int Basespeed = 0;
     int[,] Fakegrid = new int[TetrisGrid.GridWidth + 2, TetrisGrid.GridHeight + 1];
-    int length = 4; 
+    int length = 4;
 
     public TetrisBlock()
     {
@@ -29,6 +29,8 @@ public class TetrisBlock
         setBlock = false;
         position = new int[2] { 4, -4 };
         speed = Basespeed;
+
+
     }
 
 

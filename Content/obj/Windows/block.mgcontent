@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>Z:/Documenten/GitHub/Tetris/Content/block.png</SourceFile>
-  <SourceTime>2018-10-08T21:36:10.6171083+02:00</SourceTime>
-  <DestFile>Z:/Documenten/GitHub/Tetris/Content/bin/Windows/block.xnb</DestFile>
-  <DestTime>2018-10-17T12:06:47.4492535+02:00</DestTime>
+  <SourceFile>C:/Users/Alijt Rijcken/Documents/GitHub/Tetris/Content/block.png</SourceFile>
+  <SourceTime>2016-09-28T16:35:42+02:00</SourceTime>
+  <DestFile>C:/Users/Alijt Rijcken/Documents/GitHub/Tetris/Content/bin/Windows/block.xnb</DestFile>
+  <DestTime>2018-10-17T15:35:17.7407227+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
