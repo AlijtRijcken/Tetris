@@ -27,6 +27,8 @@ public class TetrisBlock
         setBlock = false;
         position = new int[2] { 4, -4 };
         speed = Basespeed;
+
+
     }
 
     //rotation current tetrisblock. 

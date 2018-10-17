@@ -19,8 +19,8 @@ class GameWorld
     TetrisBlock useBlock;
     TetrisBlock previewBlock;
     TetrisBlock type;
-    public int score;
-    public int Score { get { return score; } set { score = value; } }
+    public double score;
+    public double Score { get { return score; } set { score = value; } }
     int nextblock;
 
     public GameWorld()
@@ -74,7 +74,8 @@ class GameWorld
 
             }
         }
-        score += (int)Math.Round(multiplier * 1.25f);
+
+        score += Math.Round(multiplier * 1.25);            //meer punten
     }
     //Check if emptylines
     public void CheckIfEmptyLines()
@@ -131,7 +132,9 @@ class GameWorld
 
         }
         //level snelheid aanpassing.
-        type.Basespeed = 40-score*2;
+
+        type.Basespeed = 40-(int)score*2;
+
     }
     
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
@@ -169,7 +172,7 @@ class GameWorld
         grid.Draw(gameTime, spriteBatch);
         useBlock.Draw(gameTime, spriteBatch);
         previewBlock.Draw(gameTime, spriteBatch);
-        spriteBatch.DrawString(font, "Score:" + score, new Vector2(360,5), Color.Blue);
+        spriteBatch.DrawString(font, "Score:" + (int)score, new Vector2(360,5), Color.Blue);
         spriteBatch.End();
     }
 
