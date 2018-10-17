@@ -17,6 +17,7 @@ public class TetrisBlock
     InputHelper input;
     int ticks;
     int speed;
+    public int Basespeed = 0;
     int[,] Fakegrid = new int[TetrisGrid.GridWidth + 2, TetrisGrid.GridHeight + 1];
     int length = 4; 
 
@@ -27,6 +28,7 @@ public class TetrisBlock
         block = new int[4, 4] { { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
         setBlock = false;
         position = new int[2] { 4, -4 };
+        speed = Basespeed;
     }
 
 
@@ -104,14 +106,13 @@ public class TetrisBlock
         {
             for (int j = 0; j < length; j++)
             {
-                if (position[1] >= 0)
-                {
-                    if (block[i, j] != 0 && TetrisGrid.Grid[position[0] + i, position[1] + j] != 0)
+                    if (position[0]<=TetrisGrid.GridWidth-2)
                     {
-                        test = true;
-                    }
-                }
-                
+                        if (block[i, j] != 0 && TetrisGrid.Grid[position[0] + i, position[1] + j] != 0)
+                        {
+                            test = true;
+                        }
+                    } 
             }
         }
         if (test == true)
@@ -187,28 +188,7 @@ public class TetrisBlock
         }
 
     }
-    //public void Instantdrop()
-    //{
-    //    int highest = 0;
-    //    for (int i = 0; i < length; i++)
-    //    {
-    //        for (int j = 0; j < length; j++)
-    //        {
-    //            if(block[i,j] != 0)
-    //            {
-    //                for (int k = j; k < TetrisGrid.GridHeight; k++)
-    //                {
-    //                    if (TetrisGrid.Grid[i, k] != 0)
-    //                    {
-    //                        highest = k;
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-    //    position[1] = highest;
 
-    //}
     //geplaatst blockje  in grid vastleggen
     public void UploadGrid(int[,] grid,int[,] TempBlock)
 
@@ -249,11 +229,11 @@ public class TetrisBlock
         }
         if (input.KeyDown(Keys.Space) && setBlock == false)
         {
-            Instantdrop();
+            speed = 0;
         }
-        if (input.KeyDown(Keys.Down)==false && setBlock == false)
+        if (input.KeyDown(Keys.Down)==false && input.KeyDown(Keys.Space) == false && setBlock == false)
         {
-            speed = 40;
+            speed = Basespeed;
         }
     }
 

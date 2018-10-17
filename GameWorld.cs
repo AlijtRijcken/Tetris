@@ -20,19 +20,18 @@ class GameWorld
     InputHelper input;
     public int score;
     public int Score { get { return score; } set { score = value; } }
+    int nextblock;
 
     public GameWorld()
     {
+        
         random = new Random();
-
-
+        nextblock = random.Next(0, 7);
         font = TetrisGame.ContentManager.Load<SpriteFont>("SpelFont");
-
         grid = new TetrisGrid();
         Spawn();
         score = 0; 
     }
-
     public void CheckFinish()
     {
         for (int i = 1; i < TetrisGrid.GridWidth + 1; i++)
@@ -47,6 +46,7 @@ class GameWorld
     }
     public void Check()
     {
+        int multiplier = 0;
         for (int i = 0; i < TetrisGrid.GridHeight; i++)
         {
             bool check = false;
@@ -61,13 +61,16 @@ class GameWorld
 
             if (check == false)
             {
+                multiplier++;
                 for (int k = 1; k <TetrisGrid.GridWidth+1; k++)
                 {
                     TetrisGrid.Grid[k,i] = 0;
+                    
                 }
 
             }
         }
+        score += multiplier;
     }
     //Check if emptylines
     public void CheckIfEmptyLines()
@@ -80,6 +83,7 @@ class GameWorld
                 if (TetrisGrid.Grid[j, i] != 0)
                 {
                     tester = true;
+                   
                 }
             }
             if (tester == false)
@@ -97,7 +101,7 @@ class GameWorld
         //spawns random block (kan dit in tetrisblock?
     public void Spawn()
     {
-        switch (random.Next(0,7))
+        switch (nextblock)
         {
             case 0:
                 useBlock = new BlockI();
@@ -122,6 +126,8 @@ class GameWorld
                 break;
 
         }
+        //level snelheid aanpassing.
+        useBlock.Basespeed = 40-score*3;
     }
     
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
@@ -135,13 +141,15 @@ class GameWorld
         //spawnt nieuw random block als vorige is geplaatst
         if (useBlock.setBlock)
         {
-            Spawn();
+            
             Check();
             CheckFinish();
             for (int i = 0; i < 4; i++)
             {
                 CheckIfEmptyLines();
             }
+            Spawn();
+            nextblock = random.Next(0, 7);
         }
         useBlock.Update(gameTime);
           //miste soms lijnen als hij in if staat, aanpassen methode?
@@ -153,7 +161,7 @@ class GameWorld
         spriteBatch.Begin();
         grid.Draw(gameTime, spriteBatch);
         useBlock.Draw(gameTime, spriteBatch);
-        spriteBatch.DrawString(font, "Score:" + score, new Vector2(320,5), Color.Blue);
+        spriteBatch.DrawString(font, "Score:" + score, new Vector2(340,5), Color.Blue);
         spriteBatch.End();
     }
 
