@@ -1,11 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 public class TetrisBlock
 {
@@ -102,7 +97,7 @@ public class TetrisBlock
     }
 
     //links/rechts bewegen van het blockje
-    public void Movement(int I)
+    public void Movement(int direction)
 
     {
         bool test = false;
@@ -112,14 +107,14 @@ public class TetrisBlock
             {
                 if (position[1] >= 0)
                 {
-                    if (block[i, j] != 0 && TetrisGrid.Grid[position[0] + i + I, position[1] + j] != 0)
+                    if (block[i, j] != 0 && TetrisGrid.Grid[position[0] + i + direction, position[1] + j] != 0)
                     {
                         test = true;
                     }
                 }
                 else
                 {
-                    if (block[i, j] != 0 && TetrisGrid.Grid[position[0] + i + I,j] != 0)
+                    if (block[i, j] != 0 && TetrisGrid.Grid[position[0] + i + direction,j] != 0)
                     {
                         test = true;
                     }
@@ -128,7 +123,7 @@ public class TetrisBlock
         }
         if (test == false)
         {
-            position[0] = position[0] + I;
+            position[0] = position[0] + direction;
         }
         else
         {
@@ -137,7 +132,7 @@ public class TetrisBlock
         
     }
 
-    //vallen
+    //vallen van het TetrisBlock
     public void DownMovement()
     {
         //Gametime
@@ -170,14 +165,14 @@ public class TetrisBlock
     }
 
     //geplaatst blockje  in grid vastleggen
-    public void UploadGrid(int[,] grid,int[,] TempBlock)
+    public void UploadGrid(int[,] grid,int[,] tempBlock)
 
     {
         for (int i = 0; i < length; i++)
         {
             for (int j = 0; j < length; j++)
             {
-                if (TempBlock[i, j] != 0) {
+                if (tempBlock[i, j] != 0) {
                     grid[i + position[0], j + position[1]] = block[i, j];
                  }
 
@@ -187,11 +182,11 @@ public class TetrisBlock
 
     public void Input(GameTime gametime, InputHelper input)
     {
-        if (input.KeyPressed(Keys.Z)&&setBlock == false)
+        if (input.KeyPressed(Keys.A)&&setBlock == false)
         {
             CounterRotate();
         }
-        if (input.KeyPressed(Keys.X) && setBlock == false)
+        if (input.KeyPressed(Keys.D) && setBlock == false)
         {
             Rotate();
         }

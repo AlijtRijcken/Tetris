@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System;
 
 
@@ -12,16 +11,17 @@ class GameWorld
 
     public static Random Random { get { return random; } }
     static Random random;
-    /// The main font of the game.
+    
+    // The main font of the game.
     public SpriteFont font;
-    public bool state = false;
+    public bool state = false;              //gamestates
     TetrisGrid grid;
     TetrisBlock useBlock;
     TetrisBlock previewBlock;
     TetrisBlock type;
     public double score;
     public double Score { get { return score; } set { score = value; } }
-    int nextblock;
+    int nextblock;                         //randomizer variable
 
     public GameWorld()
     {
@@ -30,6 +30,7 @@ class GameWorld
         previewBlock = new TetrisBlock();
         font = TetrisGame.ContentManager.Load<SpriteFont>("SpelFont");
         grid = new TetrisGrid();
+
         nextblock = random.Next(0, 7);
         Spawn();
         nextblock = random.Next(0, 7);
@@ -79,7 +80,7 @@ class GameWorld
             }
         }
 
-        score += Math.Round(multiplier * 1.25);            //meer punten
+        score += Math.Round(multiplier * 1.25);            //meer punten naarmate meer rijen in een keer worden geleegd
     }
     
     //Check if emptylines
@@ -108,7 +109,7 @@ class GameWorld
              }
         }
     }
-        //spawns random block (kan dit in tetrisblock?
+        //spawns random block
     public void Spawn()
     {
         switch (nextblock)
@@ -136,8 +137,8 @@ class GameWorld
                 break;
 
         }
+       
         //level snelheid aanpassing.
-
         type.Basespeed = 40-(int)score*2;
 
     }
@@ -183,6 +184,8 @@ class GameWorld
 
     public void Reset()
     {
+       // TetrisGrid.Clear(); ??
+       //Initazalisation face
 
     }
 

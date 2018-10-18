@@ -11,7 +11,7 @@ class TetrisGame : Game
     SpriteBatch spriteBatch;
     InputHelper inputHelper;
     public GameWorld gameWorld;
-    Song backgroundMusic;
+    //Song backgroundMusic;
 
     /// An enum for the different game states that the game can have.
     public enum GameState
@@ -25,10 +25,7 @@ class TetrisGame : Game
     /// A static reference to the ContentManager object, used for loading assets.
     public static ContentManager ContentManager { get; private set; }
     
-
-    /// <summary>
     /// A static reference to the width and height of the screen.
-    /// </summary>
     public static Point ScreenSize { get; private set; }
 
     [STAThread]
@@ -58,6 +55,7 @@ class TetrisGame : Game
 
         // create the input helper object
         inputHelper = new InputHelper();
+
     }
 
     protected override void LoadContent()
@@ -65,7 +63,7 @@ class TetrisGame : Game
         spriteBatch = new SpriteBatch(GraphicsDevice);
 
         //background music, Enjoy!
-        backgroundMusic = Content.Load<Song>("snd_music");
+        MediaPlayer.Play(Content.Load<Song>("snd_music"));
 
         // create and reset the game world
         gameWorld = new GameWorld();
@@ -74,8 +72,6 @@ class TetrisGame : Game
 
     protected override void Update(GameTime gameTime)
     {
-        MediaPlayer.Play(backgroundMusic);          ///Modifaction
-
         inputHelper.Update(gameTime);
         if (gameWorld.state == true) { gameState =GameState.GameOver; }
         switch (gameState)
